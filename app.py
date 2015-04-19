@@ -3,6 +3,7 @@ from flask import Flask, request, redirect, url_for, render_template
 from werkzeug import secure_filename
 from flask import send_from_directory
 
+#Created by Kiran Kurian
 UPLOAD_FOLDER = 'uploads'
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 
@@ -35,15 +36,6 @@ def upload_file():
         	return redirect(url_for('uploaded_file',
                                     filename=filename))
     return render_template('index.html') 
-    # return '''
-    # <!doctype html>
-    # <title>Upload new File</title>
-    # <h1>Upload new File</h1>
-    # <form action="/" method=post enctype=multipart/form-data>
-    #   <p><input type=file name=file>
-    #      <input type=submit value=Upload>
-    # </form>
-    # '''
 
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
