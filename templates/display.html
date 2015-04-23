@@ -7,7 +7,7 @@
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
 		<!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
-		<script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+		<script src=8"{{ url_for('static', filename='js/jquery.min.js') }}"></script>
 		<script src="{{ url_for('static', filename='js/skel.min.js') }}"></script>
 		<script src="{{ url_for('static', filename='js/init.js') }}"></script>
 		<!-- <noscript> -->
@@ -51,14 +51,30 @@
 console.log("Entered the script");
 var myContent = $('p:first').text() ;
 console.log("Got the text");
-
-console.log("Hid the text");
-var utterance = new SpeechSynthesisUtterance( myContent );
-console.log("Got the words to say");
-
+console.log(myContent);
+var utterance;
+var line="";
 $( "#target" ).click(function() {
 	console.log("About to serenade you");
-	window.speechSynthesis.speak(utterance);
+	for(i=0;i<myContent.length;i++){
+		if(myContent[i]=="\n"){
+			utterance = new SpeechSynthesisUtterance(line);
+			window.speechSynthesis.speak(utterance);
+			console.log(line);
+			line="";
+		}
+		else if(i==myContent.length-1){
+			line+=myContent[i];
+			utterance = new SpeechSynthesisUtterance(line);
+			window.speechSynthesis.speak(utterance);
+			console.log(line);
+			line="";
+		}
+		else{
+			line+=myContent[i];
+		}
+
+	}
 	console.log("*bow*");
 });
 
