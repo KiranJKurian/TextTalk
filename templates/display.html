@@ -9,11 +9,13 @@
 		<!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
 		<script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
 		<script src="{{ url_for('static', filename='js/skel.min.js') }}"></script>
+
+<script src="{{ url_for('static', filename='js/jquery.scrolly.min.js') }}"></script>
 		<script src="{{ url_for('static', filename='js/init.js') }}"></script>
 		<!-- <noscript> -->
 			<link rel="stylesheet" href="{{ url_for('static', filename='css/skel.css') }}" />
 			<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
-			<link rel="stylesheet" href="{{ url_for('static', filename='css/style-wide.css') }}" />
+			<link rel="stylesheet" href="{{ url_for('static', filename='css/style-xlarge.css') }}" />
 		<!-- </noscript> -->
 		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
 	</head>
@@ -51,7 +53,7 @@
 console.log("Entered the script");
 var myContent = $('p:first').text() ;
 console.log("Got the text");
-console.log(myContent);
+// console.log(myContent);
 var utterance;
 var line="";
 $( "#target" ).click(function() {
@@ -60,14 +62,14 @@ $( "#target" ).click(function() {
 		if(myContent[i]=="\n"){
 			utterance = new SpeechSynthesisUtterance(line);
 			window.speechSynthesis.speak(utterance);
-			console.log(line);
+			// console.log(line);
 			line="";
 		}
 		else if(i==myContent.length-1){
 			line+=myContent[i];
 			utterance = new SpeechSynthesisUtterance(line);
 			window.speechSynthesis.speak(utterance);
-			console.log(line);
+			// console.log(line);
 			line="";
 		}
 		else{
